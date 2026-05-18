@@ -1,0 +1,34 @@
+[package]
+name = "use-quant"
+description = "Facade crate for RustUse quantitative finance primitives"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/use-quant"
+keywords = ["quant", "finance", "prices", "risk", "rustuse"]
+categories = ["data-structures", "science"]
+
+[dependencies]
+use-bar.workspace = true
+use-drawdown.workspace = true
+use-factor.workspace = true
+use-market-price.workspace = true
+use-portfolio-weight.workspace = true
+use-price-series.workspace = true
+use-return.workspace = true
+use-risk.workspace = true
+use-signal-score.workspace = true
+use-tick.workspace = true
+use-volatility.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints]
+workspace = true

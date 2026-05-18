@@ -1,0 +1,25 @@
+[package]
+name = "use-price-series"
+description = "Primitive ordered price-series vocabulary for RustUse quantitative crates"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/use-price-series"
+keywords = ["quant", "price", "series", "returns", "rustuse"]
+categories = ["data-structures", "science"]
+
+[dependencies]
+use-market-price.workspace = true
+use-return.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints]
+workspace = true

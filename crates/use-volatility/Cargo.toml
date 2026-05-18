@@ -1,0 +1,21 @@
+[package]
+name = "use-volatility"
+description = "Primitive volatility vocabulary for RustUse quantitative crates"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/use-volatility"
+keywords = ["quant", "volatility", "risk", "returns", "rustuse"]
+categories = ["mathematics", "science"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints]
+workspace = true

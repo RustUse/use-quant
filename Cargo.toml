@@ -1,0 +1,62 @@
+[workspace]
+members = [
+    "crates/use-quant",
+    "crates/use-market-price",
+    "crates/use-return",
+    "crates/use-bar",
+    "crates/use-tick",
+    "crates/use-price-series",
+    "crates/use-volatility",
+    "crates/use-drawdown",
+    "crates/use-portfolio-weight",
+    "crates/use-factor",
+    "crates/use-signal-score",
+    "crates/use-risk",
+]
+resolver = "3"
+
+[workspace.package]
+authors = ["RustUse Contributors"]
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.95.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/RustUse/use-quant"
+homepage = "https://rustuse.org"
+readme = "README.md"
+publish = false
+
+[workspace.dependencies]
+use-bar = { version = "0.0.1", path = "crates/use-bar" }
+use-drawdown = { version = "0.0.1", path = "crates/use-drawdown" }
+use-factor = { version = "0.0.1", path = "crates/use-factor" }
+use-market-price = { version = "0.0.1", path = "crates/use-market-price" }
+use-portfolio-weight = { version = "0.0.1", path = "crates/use-portfolio-weight" }
+use-price-series = { version = "0.0.1", path = "crates/use-price-series" }
+use-quant = { version = "0.0.1", path = "crates/use-quant" }
+use-return = { version = "0.0.1", path = "crates/use-return" }
+use-risk = { version = "0.0.1", path = "crates/use-risk" }
+use-signal-score = { version = "0.0.1", path = "crates/use-signal-score" }
+use-tick = { version = "0.0.1", path = "crates/use-tick" }
+use-volatility = { version = "0.0.1", path = "crates/use-volatility" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.metadata.rustuse.release]
+publish = false
+versioning = "lockstep-0.x"
+first-publish-candidates = [
+    "use-market-price",
+    "use-return",
+    "use-bar",
+    "use-tick",
+    "use-price-series",
+    "use-volatility",
+    "use-drawdown",
+    "use-portfolio-weight",
+    "use-factor",
+    "use-signal-score",
+    "use-risk",
+    "use-quant",
+]

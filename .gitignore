@@ -1,0 +1,12 @@
+target/
+.tools/
+.env
+.env.*
+.direnv/
+.autonomeos/
+node_modules/
+dist/
+sbom.cyclonedx*
+
+# local notes
+notes/
