@@ -1,0 +1,44 @@
+# Mirror validation only. Releases and publishing stay on GitHub.
+image: rust:1.95
+
+stages:
+  - format
+  - security
+  - lint
+  - test
+  - docs
+
+default:
+  before_script:
+    - rustup component add rustfmt clippy
+    - cargo install cargo-deny cargo-audit --locked
+
+format:
+  stage: format
+  script:
+    - cargo fmt --all --check
+
+security:
+  stage: security
+  script:
+    - cargo deny check
+    - cargo audit
+
+lint:
+  stage: lint
+  script:
+    - cargo +1.95.0 check --workspace --all-features
+    - cargo clippy --workspace --all-targets --all-features -- -D warnings
+    - cargo check --workspace --all-features --examples
+
+test:
+  stage: test
+  script:
+    - cargo test --workspace --all-features
+    - cargo test --doc --workspace --all-features
+    - cargo test --workspace --no-default-features
+
+docs:
+  stage: docs
+  script:
+    - cargo doc --workspace --all-features --no-deps

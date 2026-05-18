@@ -326,10 +326,10 @@ impl fmt::Display for BarError {
             Self::NegativeVolume => formatter.write_str("bar volume cannot be negative"),
             Self::InvalidHigh => {
                 formatter.write_str("bar high must be at least open, low, and close")
-            }
+            },
             Self::InvalidLow => {
                 formatter.write_str("bar low must be at most open, high, and close")
-            }
+            },
         }
     }
 }
@@ -340,7 +340,7 @@ impl Error for BarError {
             Self::InvalidPrice(error) => Some(error),
             Self::NonFiniteVolume | Self::NegativeVolume | Self::InvalidHigh | Self::InvalidLow => {
                 None
-            }
+            },
         }
     }
 }

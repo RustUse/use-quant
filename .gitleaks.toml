@@ -1,0 +1,20 @@
+title = "RustUse Gitleaks configuration"
+
+[extend]
+useDefault = true
+
+# Keep allowlists narrow and reviewed.
+# Prefer, in order:
+# 1. `gitleaks:allow` for explicit inline test fixtures.
+# 2. rule-scoped allowlists in this file for stable repository fixtures.
+# 3. `.gitleaksignore` fingerprints only for historical findings that cannot be removed immediately.
+#
+# Example rule extension shape:
+# [[rules]]
+# id = "generic-api-key"
+#   [[rules.allowlists]]
+#   description = "Reviewed test fixture"
+#   condition = "AND"
+#   paths = ['''^tests/fixtures/example\.txt$''']
+#   regexTarget = "line"
+#   regexes = ['''example-token''']

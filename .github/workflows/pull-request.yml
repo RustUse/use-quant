@@ -1,0 +1,39 @@
+name: Pull Request Quality Gate
+
+"on":
+    pull_request:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: pull-request-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    quality-gate:
+        name: PR Quality Checks
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Install stable Rust toolchain
+              uses: actions-rust-lang/setup-rust-toolchain@v1
+              with:
+                  components: rustfmt, clippy
+                  rustflags: ""
+                  cache-workspaces: |
+                      . -> target
+
+            - name: Check formatting
+              run: cargo fmt --all -- --check
+
+            - name: Lint workspace
+              run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+            - name: Run tests
+              run: cargo test --workspace --all-features
+
+            - name: Build workspace
+              run: cargo build --workspace --all-features

@@ -2,7 +2,7 @@
 #![doc = include_str!("../README.md")]
 
 use core::fmt;
-use std::{collections::btree_map, collections::BTreeMap, error::Error};
+use std::{collections::BTreeMap, collections::btree_map, error::Error};
 
 /// Common portfolio weight primitives.
 pub mod prelude {
@@ -187,7 +187,7 @@ impl fmt::Display for PortfolioWeightError {
             Self::EmptyAssetId => formatter.write_str("asset identifier cannot be empty"),
             Self::DuplicateAssetId(asset_id) => {
                 write!(formatter, "duplicate asset identifier: {asset_id}")
-            }
+            },
             Self::NonFiniteTolerance => formatter.write_str("weight tolerance must be finite"),
             Self::NegativeTolerance => formatter.write_str("weight tolerance cannot be negative"),
         }
@@ -265,9 +265,11 @@ mod tests {
         ])
         .expect("set should be valid");
 
-        assert!(weights
-            .is_approximately_fully_invested(1.0e-9)
-            .expect("check should succeed"));
+        assert!(
+            weights
+                .is_approximately_fully_invested(1.0e-9)
+                .expect("check should succeed")
+        );
     }
 
     #[test]

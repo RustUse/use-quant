@@ -190,12 +190,12 @@ impl fmt::Display for DrawdownError {
             Self::NonFinite => formatter.write_str("drawdown values must be finite"),
             Self::Positive => {
                 formatter.write_str("drawdown cannot be positive with this convention")
-            }
+            },
             Self::InvalidPeak => formatter.write_str("drawdown peak must be finite and positive"),
             Self::NegativeValue => formatter.write_str("drawdown current value cannot be negative"),
             Self::EmptySeries => {
                 formatter.write_str("maximum drawdown requires at least one value")
-            }
+            },
             Self::ZeroWindow => formatter.write_str("drawdown window length must be non-zero"),
             Self::EmptyLabel => formatter.write_str("drawdown point label cannot be empty"),
         }

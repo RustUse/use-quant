@@ -222,10 +222,10 @@ impl fmt::Display for ReturnError {
             Self::NonPositiveStartPrice => formatter.write_str("start price must be positive"),
             Self::NegativeEndPrice => {
                 formatter.write_str("end price cannot be negative for simple return")
-            }
+            },
             Self::NonPositiveEndPrice => {
                 formatter.write_str("end price must be positive for log return")
-            }
+            },
         }
     }
 }

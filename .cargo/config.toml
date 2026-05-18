@@ -1,0 +1,11 @@
+[alias]
+xfmt = "fmt --all -- --check"
+xcheck = "check --workspace --all-features"
+xexamples = "check --workspace --all-features --examples"
+xlint = "clippy --workspace --all-targets --all-features -- -D warnings"
+xtest = "test --workspace --all-features"
+xtest-minimal = "test --workspace --no-default-features"
+xbuild = "build --workspace --all-features"
+xdoc = "doc --workspace --all-features --no-deps"
+xdeny = "deny check"
+xaudit = "audit"

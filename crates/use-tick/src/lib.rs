@@ -277,7 +277,7 @@ impl fmt::Display for TickError {
             Self::NegativeSize => formatter.write_str("tick size cannot be negative"),
             Self::CrossedQuote => {
                 formatter.write_str("quote ask must be greater than or equal to bid")
-            }
+            },
         }
     }
 }

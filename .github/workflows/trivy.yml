@@ -1,0 +1,52 @@
+name: Trivy
+
+"on":
+    pull_request:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+    security-events: write
+
+jobs:
+    filesystem-scan:
+        name: Filesystem Vulnerability and Misconfiguration Scan
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Generate Trivy SARIF report
+              uses: aquasecurity/trivy-action@v0.36.0
+              with:
+                  scan-type: fs
+                  scan-ref: .
+                  scanners: vuln,misconfig
+                  severity: HIGH,CRITICAL
+                  trivyignores: .trivyignore
+                  limit-severities-for-sarif: true
+                  format: sarif
+                  output: trivy-results.sarif
+                  exit-code: "0"
+
+            - name: Upload Trivy SARIF results
+              if: always()
+              continue-on-error: true
+              uses: github/codeql-action/upload-sarif@v3
+              with:
+                  sarif_file: trivy-results.sarif
+
+            - name: Fail on critical Trivy findings
+              uses: aquasecurity/trivy-action@v0.36.0
+              with:
+                  scan-type: fs
+                  scan-ref: .
+                  scanners: vuln,misconfig
+                  severity: CRITICAL
+                  trivyignores: .trivyignore
+                  format: table
+                  exit-code: "1"
+                  ignore-unfixed: true
+                  skip-setup-trivy: true

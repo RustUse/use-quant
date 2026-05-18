@@ -191,7 +191,7 @@ impl fmt::Display for VolatilityError {
             Self::Negative => formatter.write_str("volatility cannot be negative"),
             Self::InsufficientReturns => {
                 formatter.write_str("sample volatility requires at least two returns")
-            }
+            },
             Self::ZeroWindow => formatter.write_str("volatility window length must be non-zero"),
         }
     }

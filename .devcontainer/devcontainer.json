@@ -1,0 +1,23 @@
+{
+    "name": "use-quant",
+    "image": "mcr.microsoft.com/devcontainers/rust:1-1-bullseye",
+    "remoteUser": "vscode",
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.cargo.features": "all",
+                "editor.formatOnSave": true
+            },
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "tamasfe.even-better-toml",
+                "redhat.vscode-yaml",
+                "editorconfig.editorconfig",
+                "github.vscode-github-actions"
+            ]
+        }
+    }
+}

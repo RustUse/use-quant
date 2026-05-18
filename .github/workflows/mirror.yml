@@ -1,0 +1,116 @@
+name: Mirror Repositories
+
+"on":
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    if: >-
+      github.repository_owner == 'RustUse' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' && (
+        fromJSON(toJSON(vars)).GITLAB_MIRROR_URL != '' ||
+        fromJSON(toJSON(vars)).CODEBERG_MIRROR_URL != '' ||
+        fromJSON(toJSON(vars)).SOURCEHUT_MIRROR_URL != ''
+      )
+    runs-on: ubuntu-latest
+    env:
+      GITLAB_MIRROR_URL: ${{ fromJSON(toJSON(vars)).GITLAB_MIRROR_URL }}
+      CODEBERG_MIRROR_URL: ${{ fromJSON(toJSON(vars)).CODEBERG_MIRROR_URL }}
+      SOURCEHUT_MIRROR_URL: ${{ fromJSON(toJSON(vars)).SOURCEHUT_MIRROR_URL }}
+      GITLAB_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).GITLAB_MIRROR_SSH_KEY }}
+      CODEBERG_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).CODEBERG_MIRROR_SSH_KEY }}
+      SOURCEHUT_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).SOURCEHUT_MIRROR_SSH_KEY }}
+    steps:
+      - name: Validate mirror configuration
+        shell: bash
+        run: |
+          if [ -n "$GITLAB_MIRROR_URL" ] && [ -z "$GITLAB_MIRROR_SSH_KEY" ]; then
+            echo "::error::GITLAB_MIRROR_URL is set but GITLAB_MIRROR_SSH_KEY is missing"
+            exit 1
+          fi
+
+          if [ -n "$CODEBERG_MIRROR_URL" ] && [ -z "$CODEBERG_MIRROR_SSH_KEY" ]; then
+            echo "::error::CODEBERG_MIRROR_URL is set but CODEBERG_MIRROR_SSH_KEY is missing"
+            exit 1
+          fi
+
+          if [ -n "$SOURCEHUT_MIRROR_URL" ] && [ -z "$SOURCEHUT_MIRROR_SSH_KEY" ]; then
+            echo "::error::SOURCEHUT_MIRROR_URL is set but SOURCEHUT_MIRROR_SSH_KEY is missing"
+            exit 1
+          fi
+
+      - name: Create mirror clone from canonical repository
+        run: |
+          git clone --mirror \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" \
+            repo.git
+
+      - name: Configure mirror SSH keys
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          if [ -n "$GITLAB_MIRROR_SSH_KEY" ]; then
+            printf '%s\n' "$GITLAB_MIRROR_SSH_KEY" > ~/.ssh/id_gitlab_mirror
+            chmod 600 ~/.ssh/id_gitlab_mirror
+            printf '%s\n' \
+              'Host gitlab.com' \
+              '  IdentityFile ~/.ssh/id_gitlab_mirror' \
+              '  IdentitiesOnly yes' >> ~/.ssh/config
+          fi
+
+          if [ -n "$CODEBERG_MIRROR_SSH_KEY" ]; then
+            printf '%s\n' "$CODEBERG_MIRROR_SSH_KEY" > ~/.ssh/id_codeberg_mirror
+            chmod 600 ~/.ssh/id_codeberg_mirror
+            printf '%s\n' \
+              'Host codeberg.org' \
+              '  IdentityFile ~/.ssh/id_codeberg_mirror' \
+              '  IdentitiesOnly yes' >> ~/.ssh/config
+          fi
+
+          if [ -n "$SOURCEHUT_MIRROR_SSH_KEY" ]; then
+            printf '%s\n' "$SOURCEHUT_MIRROR_SSH_KEY" > ~/.ssh/id_sourcehut_mirror
+            chmod 600 ~/.ssh/id_sourcehut_mirror
+            printf '%s\n' \
+              'Host git.sr.ht' \
+              '  IdentityFile ~/.ssh/id_sourcehut_mirror' \
+              '  IdentitiesOnly yes' >> ~/.ssh/config
+          fi
+
+      - name: Trust public forge hosts
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+          ssh-keyscan codeberg.org >> ~/.ssh/known_hosts
+          ssh-keyscan git.sr.ht >> ~/.ssh/known_hosts
+
+      - name: Mirror to GitLab
+        if: ${{ env.GITLAB_MIRROR_URL != '' }}
+        working-directory: repo.git
+        run: |
+          git remote add gitlab "$GITLAB_MIRROR_URL"
+          git push --mirror gitlab
+
+      - name: Mirror to Codeberg or Forgejo
+        if: ${{ env.CODEBERG_MIRROR_URL != '' }}
+        working-directory: repo.git
+        run: |
+          git remote add codeberg "$CODEBERG_MIRROR_URL"
+          git push --mirror codeberg
+
+      - name: Mirror to SourceHut
+        if: ${{ env.SOURCEHUT_MIRROR_URL != '' }}
+        working-directory: repo.git
+        run: |
+          git remote add sourcehut "$SOURCEHUT_MIRROR_URL"
+          git push --mirror sourcehut

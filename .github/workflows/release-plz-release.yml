@@ -1,0 +1,56 @@
+name: Release Publish Automation
+
+"on":
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            post-initial-release:
+                description: Confirm the initial manual crates.io release wave is complete and all published crates already exist on crates.io
+                required: true
+                type: boolean
+
+permissions:
+    contents: write
+    pull-requests: read
+    id-token: write
+
+concurrency:
+    group: release-plz-release-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    release-plz-release:
+        name: Release-plz Release
+        if: ${{ !github.event.repository.fork && ((github.event_name == 'push' && fromJSON(toJSON(vars)).CRATES_IO_AUTOPUBLISH_ENABLED == 'true') || (github.event_name == 'workflow_dispatch' && inputs.post-initial-release)) }}
+        runs-on: ubuntu-latest
+        env:
+            PUBLISHED_CRATES: >-
+              use-market-price use-return use-bar use-tick use-price-series use-volatility use-drawdown use-portfolio-weight use-factor use-signal-score use-risk use-quant
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  persist-credentials: false
+
+            - name: Install stable Rust toolchain
+              uses: actions-rust-lang/setup-rust-toolchain@v1
+              with:
+                  rustflags: ""
+                  cache-workspaces: |
+                      . -> target
+
+            - name: Confirm published crates already exist on crates.io
+              run: |
+                  for crate in $PUBLISHED_CRATES; do
+                      curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
+                  done
+
+            - name: Run release-plz release
+              uses: release-plz/action@v0.5
+              with:
+                  command: release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

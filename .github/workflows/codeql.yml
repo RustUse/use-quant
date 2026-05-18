@@ -1,0 +1,46 @@
+name: CodeQL
+
+"on":
+    pull_request:
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: "43 4 * * 1"
+
+permissions:
+    actions: read
+    contents: read
+    security-events: write
+
+jobs:
+    analyze:
+        name: CodeQL Analysis
+        if: ${{ !github.event.repository.private }}
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                language:
+                    - rust
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v3
+              with:
+                  languages: ${{ matrix.language }}
+
+            - name: Install stable Rust toolchain
+              uses: actions-rust-lang/setup-rust-toolchain@v1
+              with:
+                  rustflags: ""
+                  cache-workspaces: |
+                      . -> target
+
+            - name: Build workspace for CodeQL
+              run: cargo build --workspace --all-features
+
+            - name: Analyze with CodeQL
+              uses: github/codeql-action/analyze@v3

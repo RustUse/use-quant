@@ -270,7 +270,7 @@ impl fmt::Display for RiskError {
             Self::NonFiniteThreshold => formatter.write_str("risk limit threshold must be finite"),
             Self::NegativeThreshold => {
                 formatter.write_str("risk limit threshold cannot be negative")
-            }
+            },
             Self::NonFiniteAmount => formatter.write_str("risk budget amount must be finite"),
             Self::NegativeAmount => formatter.write_str("risk budget amount cannot be negative"),
         }

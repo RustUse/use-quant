@@ -1,0 +1,136 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cargo: fmt (check)",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xfmt"],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: check workspace",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xcheck"],
+            "group": "build",
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: examples",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xexamples"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: clippy",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xlint"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: test all-features",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xtest"],
+            "group": "test",
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: test no-default-features",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xtest-minimal"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: build workspace",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xbuild"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: doc",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xdoc"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "cargo: deny",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xdeny"],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: audit",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["xaudit"],
+            "problemMatcher": []
+        },
+        {
+            "label": "dev: bootstrap optional cargo tools",
+            "type": "shell",
+            "command": "bash",
+            "args": ["scripts/bootstrap-dev-tools.sh"],
+            "windows": {
+                "command": "powershell",
+                "args": ["-ExecutionPolicy", "Bypass", "-File", "scripts/bootstrap-dev-tools.ps1"]
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: publish dry-run focused crates",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "crates=\"use-market-price use-return use-bar use-tick use-price-series use-volatility use-drawdown use-portfolio-weight use-factor use-signal-score use-risk\"; if [ -z \"$crates\" ]; then echo \"No focused crates configured\"; exit 0; fi; set -euo pipefail; for crate in $crates; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
+            ],
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-Command",
+                    "$ErrorActionPreference = 'Stop'; $crates = @('use-market-price','use-return','use-bar','use-tick','use-price-series','use-volatility','use-drawdown','use-portfolio-weight','use-factor','use-signal-score','use-risk'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
+                ]
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: facade publish dry-run (post-publication)",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["publish", "--dry-run", "--allow-dirty", "-p", "use-quant"],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: verify workspace",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cargo: fmt (check)",
+                "cargo: check workspace",
+                "cargo: clippy",
+                "cargo: test all-features",
+                "cargo: build workspace"
+            ]
+        },
+        {
+            "label": "cargo: release readiness",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cargo: verify workspace",
+                "cargo: examples",
+                "cargo: test no-default-features",
+                "cargo: publish dry-run focused crates"
+            ]
+        }
+    ]
+}

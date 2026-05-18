@@ -1,0 +1,99 @@
+[workspace]
+release = false
+release_always = false
+changelog_update = false
+pr_labels = ["release"]
+max_analyze_commits = 2000
+
+[[package]]
+name = "use-market-price"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-return"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-bar"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-tick"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-price-series"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-volatility"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-drawdown"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-portfolio-weight"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-factor"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-signal-score"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-risk"
+release = true
+version_group = "rustuse-quant"
+
+[[package]]
+name = "use-quant"
+release = true
+version_group = "rustuse-quant"
+changelog_update = true
+changelog_path = "./CHANGELOG.md"
+changelog_include = [
+  "use-market-price",
+  "use-return",
+  "use-bar",
+  "use-tick",
+  "use-price-series",
+  "use-volatility",
+  "use-drawdown",
+  "use-portfolio-weight",
+  "use-factor",
+  "use-signal-score",
+  "use-risk",
+]
+
+[changelog]
+header = """# Changelog
+
+## Unreleased
+"""
+protect_breaking_commits = true
+sort_commits = "oldest"
+commit_parsers = [
+  { message = "^feat(?:\\([^)]+\\))?!?: .+", group = "Added" },
+  { message = "^fix(?:\\([^)]+\\))?!?: .+", group = "Fixed" },
+  { message = "^security(?:\\([^)]+\\))?!?: .+", group = "Security" },
+  { message = "^(?:refactor|perf|change)(?:\\([^)]+\\))?!?: .+", group = "Changed" },
+  { message = "^docs(?:\\([^)]+\\))?!?: .+", group = "Documentation" },
+  { message = "^(?:build|ci|chore|deps|test)(?:\\([^)]+\\))?!?: .+", group = "Tooling" },
+  { footer = "^changelog: ?ignore$", skip = true },
+  { message = "^.*", group = "Changed" },
+]
