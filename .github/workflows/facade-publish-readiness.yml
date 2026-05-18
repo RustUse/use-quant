@@ -21,7 +21,7 @@ jobs:
         use-market-price use-return use-bar use-tick use-price-series use-volatility use-drawdown use-portfolio-weight use-factor use-signal-score use-risk
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install stable Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
