@@ -200,7 +200,7 @@ impl ReturnValue {
 }
 
 /// Errors returned by return value construction and price-to-return helpers.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum ReturnError {
     /// Return values must be finite.
     NonFiniteReturn,
@@ -232,7 +232,7 @@ impl fmt::Display for ReturnError {
 
 impl Error for ReturnError {}
 
-fn validate_return(value: f64) -> Result<f64, ReturnError> {
+const fn validate_return(value: f64) -> Result<f64, ReturnError> {
     if value.is_finite() {
         Ok(value)
     } else {

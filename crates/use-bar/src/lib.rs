@@ -407,8 +407,8 @@ mod tests {
         )
         .expect("bar should be valid");
 
-        assert_eq!(bar.high().value(), 102.0);
-        assert_eq!(bar.low().value(), 99.5);
+        assert!((bar.high().value() - 102.0).abs() < f64::EPSILON);
+        assert!((bar.low().value() - 99.5).abs() < f64::EPSILON);
     }
 
     #[test]
@@ -424,7 +424,7 @@ mod tests {
         )
         .expect("bar should be valid");
 
-        assert_eq!(bar.volume(), 42_000.0);
+        assert!((bar.volume() - 42_000.0).abs() < f64::EPSILON);
     }
 
     #[test]

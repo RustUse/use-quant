@@ -306,7 +306,7 @@ mod tests {
         )
         .expect("score should be valid");
 
-        assert_eq!(score.score(), 1.2);
+        assert!((score.score() - 1.2).abs() < f64::EPSILON);
     }
 
     #[test]

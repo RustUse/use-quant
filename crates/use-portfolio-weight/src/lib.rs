@@ -23,7 +23,7 @@ impl PortfolioWeight {
     /// # Errors
     ///
     /// Returns [`PortfolioWeightError::NonFiniteWeight`] when `value` is not finite.
-    pub fn new(value: f64) -> Result<Self, PortfolioWeightError> {
+    pub const fn new(value: f64) -> Result<Self, PortfolioWeightError> {
         if value.is_finite() {
             Ok(Self { value })
         } else {
@@ -165,6 +165,15 @@ impl WeightSet {
     }
 }
 
+impl<'a> IntoIterator for &'a WeightSet {
+    type Item = (&'a String, &'a PortfolioWeight);
+    type IntoIter = btree_map::Iter<'a, String, PortfolioWeight>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter()
+    }
+}
+
 /// Errors returned by portfolio weight helpers.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum PortfolioWeightError {
@@ -204,7 +213,7 @@ mod tests {
     fn accepts_valid_weight() {
         let weight = PortfolioWeight::new(0.25).expect("weight should be valid");
 
-        assert_eq!(weight.value(), 0.25);
+        assert!((weight.value() - 0.25).abs() < f64::EPSILON);
     }
 
     #[test]
@@ -223,8 +232,8 @@ mod tests {
         ])
         .expect("set should be valid");
 
-        let ids: Vec<&str> = weights
-            .iter()
+        let ids: Vec<&str> = (&weights)
+            .into_iter()
             .map(|(asset_id, _)| asset_id.as_str())
             .collect();
         assert_eq!(ids, vec!["ABC", "XYZ"]);
@@ -246,7 +255,7 @@ mod tests {
         ])
         .expect("set should be valid");
 
-        assert_eq!(weights.sum(), 1.0);
+        assert!((weights.sum() - 1.0).abs() < f64::EPSILON);
     }
 
     #[test]
@@ -276,6 +285,6 @@ mod tests {
     fn documents_negative_weight_behavior() {
         let weight = PortfolioWeight::new(-0.10).expect("negative weight should be valid");
 
-        assert_eq!(weight.value(), -0.10);
+        assert!((weight.value() + 0.10).abs() < f64::EPSILON);
     }
 }

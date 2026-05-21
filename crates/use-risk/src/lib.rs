@@ -339,7 +339,7 @@ mod tests {
             .expect("limit should be valid")
             .with_level(RiskLevel::Medium);
 
-        assert_eq!(limit.threshold(), 0.20);
+        assert!((limit.threshold() - 0.20).abs() < f64::EPSILON);
         assert_eq!(limit.level(), &RiskLevel::Medium);
     }
 
@@ -347,6 +347,6 @@ mod tests {
     fn constructs_risk_budget() {
         let budget = RiskBudget::new(RiskMeasure::Drawdown, 0.10).expect("budget should be valid");
 
-        assert_eq!(budget.amount(), 0.10);
+        assert!((budget.amount() - 0.10).abs() < f64::EPSILON);
     }
 }

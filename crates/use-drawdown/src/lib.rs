@@ -232,14 +232,14 @@ mod tests {
     fn computes_drawdown_from_peak_current() {
         let drawdown = Drawdown::from_peak_current(120.0, 90.0).expect("drawdown should compute");
 
-        assert_eq!(drawdown.value(), -0.25);
+        assert!((drawdown.value() + 0.25).abs() < f64::EPSILON);
     }
 
     #[test]
     fn returns_zero_drawdown_at_new_high() {
         let drawdown = Drawdown::from_peak_current(120.0, 130.0).expect("drawdown should compute");
 
-        assert_eq!(drawdown.value(), 0.0);
+        assert!(drawdown.value().abs() < f64::EPSILON);
     }
 
     #[test]

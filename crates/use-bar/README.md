@@ -1,6 +1,6 @@
 # use-bar
 
-Primitive OHLC and OHLCV bar vocabulary for RustUse quantitative crates.
+Primitive OHLC and OHLCV bar vocabulary for `RustUse` quantitative crates.
 
 `use-bar` describes bars with simple labels, intervals, prices, and optional volume. It validates obvious OHLC relationships without fetching, resampling, charting, or storing market data externally.
 

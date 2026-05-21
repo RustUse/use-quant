@@ -1,6 +1,6 @@
 # use-portfolio-weight
 
-Primitive portfolio weight vocabulary for RustUse quantitative crates.
+Primitive portfolio weight vocabulary for `RustUse` quantitative crates.
 
 `use-portfolio-weight` stores finite `f64` weights, including negative weights for short exposure vocabulary, and deterministic asset-weight sets.
 

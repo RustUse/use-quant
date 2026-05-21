@@ -221,7 +221,7 @@ mod tests {
     fn accepts_valid_positive_price() {
         let price = MarketPrice::new(101.25).expect("price should be valid");
 
-        assert_eq!(price.value(), 101.25);
+        assert!((price.value() - 101.25).abs() < f64::EPSILON);
         assert!(price.is_positive());
         assert_eq!(price.to_string(), "101.25");
     }

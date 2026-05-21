@@ -1,6 +1,6 @@
 # use-volatility
 
-Primitive volatility vocabulary for RustUse quantitative crates.
+Primitive volatility vocabulary for `RustUse` quantitative crates.
 
 `use-volatility` stores finite non-negative volatility values and descriptive volatility kinds. Its only calculation helper is a small sample standard-deviation helper over return values.
 

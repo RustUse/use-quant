@@ -165,13 +165,13 @@ impl PriceSeries {
 
     /// Returns the number of points.
     #[must_use]
-    pub fn len(&self) -> usize {
+    pub const fn len(&self) -> usize {
         self.points.len()
     }
 
     /// Returns whether the series contains no points.
     #[must_use]
-    pub fn is_empty(&self) -> bool {
+    pub const fn is_empty(&self) -> bool {
         self.points.is_empty()
     }
 
@@ -227,7 +227,7 @@ impl<'a> IntoIterator for &'a PriceSeries {
 }
 
 /// Errors returned by price-series helpers.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum PriceSeriesError {
     /// Labels must be non-empty after trimming whitespace.
     EmptyLabel,
@@ -286,13 +286,13 @@ mod tests {
         series.push(price(100.0));
         series.push(price(105.0));
 
-        assert_eq!(
-            series.first().expect("first should exist").price().value(),
-            100.0
+        assert!(
+            (series.first().expect("first should exist").price().value() - 100.0).abs()
+                < f64::EPSILON
         );
-        assert_eq!(
-            series.last().expect("last should exist").price().value(),
-            105.0
+        assert!(
+            (series.last().expect("last should exist").price().value() - 105.0).abs()
+                < f64::EPSILON
         );
     }
 

@@ -1,6 +1,6 @@
 # use-factor
 
-Primitive quantitative factor vocabulary for RustUse.
+Primitive quantitative factor vocabulary for `RustUse`.
 
 `use-factor` stores non-empty factor names, model names, exposures, and loadings as descriptive primitives.
 

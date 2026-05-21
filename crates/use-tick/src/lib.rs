@@ -330,7 +330,7 @@ mod tests {
             .with_size(100.0)
             .expect("size should be valid");
 
-        assert_eq!(tick.tick().price().value(), 101.25);
+        assert!((tick.tick().price().value() - 101.25).abs() < f64::EPSILON);
         assert_eq!(tick.tick().size(), Some(100.0));
     }
 

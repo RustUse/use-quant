@@ -1,6 +1,6 @@
 # use-market-price
 
-Primitive market price vocabulary for RustUse quantitative crates.
+Primitive market price vocabulary for `RustUse` quantitative crates.
 
 `use-market-price` stores finite non-negative `f64` market price values and descriptive price kinds without fetching prices, modeling money, or connecting to market data APIs.
 

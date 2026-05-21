@@ -1,6 +1,6 @@
 # use-risk
 
-Primitive quantitative risk vocabulary for RustUse.
+Primitive quantitative risk vocabulary for `RustUse`.
 
 `use-risk` stores risk measures, levels, numeric limits, and budgets as simple descriptive wrappers.
 

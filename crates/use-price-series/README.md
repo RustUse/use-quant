@@ -1,6 +1,6 @@
 # use-price-series
 
-Primitive ordered price-series vocabulary for RustUse quantitative crates.
+Primitive ordered price-series vocabulary for `RustUse` quantitative crates.
 
 `use-price-series` stores price points in insertion order and exposes lightweight collection helpers. It can compute adjacent simple returns without becoming a dataframe, database, indicator library, or market data store.
 

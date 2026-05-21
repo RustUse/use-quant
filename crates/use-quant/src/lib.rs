@@ -1,7 +1,7 @@
 #![forbid(unsafe_code)]
 #![doc = include_str!("../README.md")]
 
-//! Thin facade for RustUse quantitative finance primitive crates.
+//! Thin facade for `RustUse` quantitative finance primitive crates.
 //!
 //! `use-quant` describes quantitative finance vocabulary. It is not a trading system,
 //! backtesting framework, financial advisor, broker integration, market data provider, charting
@@ -72,14 +72,14 @@ mod tests {
         let limit = risk::RiskLimit::new(risk::RiskMeasure::Volatility, 0.20)?;
 
         assert!((simple_return.value() - 0.0125).abs() < 1.0e-12);
-        assert_eq!(bar.bar().close().value(), 101.25);
+        assert!((bar.bar().close().value() - 101.25).abs() < f64::EPSILON);
         assert_eq!(trade.tick().size(), Some(100.0));
         assert_eq!(series.len(), 2);
-        assert_eq!(volatility.value(), 0.20);
+        assert!((volatility.value() - 0.20).abs() < f64::EPSILON);
         assert!(drawdown.value() <= 0.0);
         assert_eq!(weight.asset_id(), "ABC");
         assert_eq!(exposure.factor().as_str(), "momentum");
-        assert_eq!(signal.score(), 1.2);
+        assert!((signal.score() - 1.2).abs() < f64::EPSILON);
         assert_eq!(limit.measure(), &risk::RiskMeasure::Volatility);
         Ok(())
     }

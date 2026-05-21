@@ -1,6 +1,6 @@
 # use-signal-score
 
-Primitive quantitative signal score vocabulary for RustUse.
+Primitive quantitative signal score vocabulary for `RustUse`.
 
 `use-signal-score` stores signal names, finite scores, directions, and strengths as descriptive primitives. It does not convert scores into trading decisions.
 

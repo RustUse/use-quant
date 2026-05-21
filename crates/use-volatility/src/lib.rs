@@ -51,7 +51,8 @@ impl Volatility {
             return Err(VolatilityError::NonFinite);
         }
 
-        let mean = returns.iter().sum::<f64>() / returns.len() as f64;
+        let count = observation_count_to_f64(returns.len())?;
+        let mean = returns.iter().sum::<f64>() / count;
         let sum_squared_deviation = returns
             .iter()
             .map(|value| {
@@ -59,7 +60,8 @@ impl Volatility {
                 deviation * deviation
             })
             .sum::<f64>();
-        let variance = sum_squared_deviation / (returns.len() - 1) as f64;
+        let sample_count = observation_count_to_f64(returns.len() - 1)?;
+        let variance = sum_squared_deviation / sample_count;
 
         Self::new(variance.sqrt())
     }
@@ -180,6 +182,8 @@ pub enum VolatilityError {
     Negative,
     /// Sample volatility requires at least two return observations.
     InsufficientReturns,
+    /// Sample volatility only supports observation counts representable as `u32`.
+    TooManyReturns,
     /// Window lengths must be non-zero.
     ZeroWindow,
 }
@@ -192,12 +196,20 @@ impl fmt::Display for VolatilityError {
             Self::InsufficientReturns => {
                 formatter.write_str("sample volatility requires at least two returns")
             },
+            Self::TooManyReturns => {
+                formatter.write_str("sample volatility observation count exceeds supported range")
+            },
             Self::ZeroWindow => formatter.write_str("volatility window length must be non-zero"),
         }
     }
 }
 
 impl Error for VolatilityError {}
+
+fn observation_count_to_f64(count: usize) -> Result<f64, VolatilityError> {
+    let count = u32::try_from(count).map_err(|_| VolatilityError::TooManyReturns)?;
+    Ok(f64::from(count))
+}
 
 fn normalized_token(value: &str) -> String {
     value
@@ -218,7 +230,7 @@ mod tests {
     fn accepts_valid_volatility() {
         let volatility = Volatility::new(0.20).expect("volatility should be valid");
 
-        assert_eq!(volatility.value(), 0.20);
+        assert!((volatility.value() - 0.20).abs() < f64::EPSILON);
     }
 
     #[test]

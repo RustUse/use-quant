@@ -1,6 +1,6 @@
 # use-return
 
-Primitive quantitative return vocabulary for RustUse.
+Primitive quantitative return vocabulary for `RustUse`.
 
 `use-return` stores finite `f64` return values and provides tiny helpers for simple and log returns from start/end prices.
 

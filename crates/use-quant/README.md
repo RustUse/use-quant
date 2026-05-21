@@ -1,6 +1,6 @@
 # use-quant
 
-Facade crate for RustUse quantitative finance primitives.
+Facade crate for `RustUse` quantitative finance primitives.
 
 `use-quant` is a thin re-export layer over focused child crates for market prices, returns, bars, ticks, price series, volatility, drawdowns, portfolio weights, factors, signal scores, and risk vocabulary. Most implementation lives in the focused crates.
 

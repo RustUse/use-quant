@@ -1,6 +1,6 @@
 # use-tick
 
-Primitive tick, trade, and quote vocabulary for RustUse quantitative crates.
+Primitive tick, trade, and quote vocabulary for `RustUse` quantitative crates.
 
 `use-tick` describes single market ticks, trade ticks, and quote ticks with optional labels and sizes. It rejects obviously crossed quotes without implementing order books or streams.
 

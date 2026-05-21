@@ -1,6 +1,6 @@
 # use-drawdown
 
-Primitive drawdown vocabulary for RustUse quantitative crates.
+Primitive drawdown vocabulary for `RustUse` quantitative crates.
 
 `use-drawdown` uses the convention `current / peak - 1.0`, capped at `0.0` for new highs. Drawdowns are therefore zero or negative finite `f64` values.
 

@@ -186,7 +186,7 @@ fn non_empty_text(value: impl AsRef<str>) -> Result<String, FactorError> {
     }
 }
 
-fn finite_value(value: f64) -> Result<f64, FactorError> {
+const fn finite_value(value: f64) -> Result<f64, FactorError> {
     if value.is_finite() {
         Ok(value)
     } else {
@@ -220,7 +220,7 @@ mod tests {
         )
         .expect("exposure should be valid");
 
-        assert_eq!(exposure.value(), 0.7);
+        assert!((exposure.value() - 0.7).abs() < f64::EPSILON);
     }
 
     #[test]
@@ -231,7 +231,7 @@ mod tests {
         )
         .expect("loading should be valid");
 
-        assert_eq!(loading.value(), 1.2);
+        assert!((loading.value() - 1.2).abs() < f64::EPSILON);
     }
 
     #[test]
