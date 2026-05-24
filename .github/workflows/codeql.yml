@@ -25,10 +25,10 @@ jobs:
                     - rust
         steps:
             - name: Check out repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Initialize CodeQL
-              uses: github/codeql-action/init@v3
+              uses: github/codeql-action/init@v4
               with:
                   languages: ${{ matrix.language }}
 
@@ -43,4 +43,4 @@ jobs:
               run: cargo build --workspace --all-features
 
             - name: Analyze with CodeQL
-              uses: github/codeql-action/analyze@v3
+              uses: github/codeql-action/analyze@v4
