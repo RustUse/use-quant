@@ -1,12 +1,37 @@
-target/
-.tools/
+# --- Cargo & Build Artifacts ---
+**/target/
+rustc-ice-*.txt
+
+# --- Rust Development Tools ---
+**/*.rs.bk
+**/mutants.out*/
+
+# --- Windows Debug Symbols ---
+*.pdb
+
+# --- Local Environment ---
 .env
 .env.*
+!.env.example
+!.env.sample
 .direnv/
-.autonomeos/
-node_modules/
-dist/
-sbom.cyclonedx*
 
-# local notes
-notes/
+# --- Editor State ---
+.vscode/
+
+# --- OS Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+__MACOSX/
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# --- Generated Reports ---
+sbom.cyclonedx*
