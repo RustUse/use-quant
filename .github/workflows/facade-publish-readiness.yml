@@ -1,6 +1,6 @@
 name: Facade Publish Readiness
 
-"on":
+on:
   workflow_dispatch:
     inputs:
       registry-ready:
@@ -13,15 +13,19 @@ permissions:
 
 jobs:
   facade-release-readiness:
-    if: ${{ inputs.registry-ready }}
+    if: ${{ inputs['registry-ready'] }}
     name: Facade Publish Dry Run
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+
     env:
       FOCUSED_CRATES: >-
-        use-market-price use-return use-bar use-tick use-price-series use-volatility use-drawdown use-portfolio-weight use-factor use-signal-score use-risk
+        use-market-price use-return use-bar use-tick use-price-series
+        use-volatility use-drawdown use-portfolio-weight use-factor
+        use-signal-score use-risk
+
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v5
 
       - name: Install stable Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -31,8 +35,12 @@ jobs:
             . -> target
 
       - name: Confirm focused crates are visible on crates.io
+        shell: bash
         run: |
+          set -euo pipefail
+
           for crate in $FOCUSED_CRATES; do
+            echo "Checking ${crate} on crates.io..."
             curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
           done
 
@@ -40,4 +48,4 @@ jobs:
         run: cargo package --list -p use-quant
 
       - name: Dry-run publish use-quant
-        run: cargo publish --dry-run --allow-dirty -p use-quant
+        run: cargo publish --dry-run --locked --allow-dirty -p use-quant
