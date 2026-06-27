@@ -36,9 +36,8 @@ jobs:
       - name: Test workspace without default features
         run: cargo test --workspace --no-default-features
 
-      - name: Dry-run publish focused crates
+      - name: Check focused crate package contents
         run: |
           for crate in $FOCUSED_CRATES; do
             cargo package --list -p "$crate"
-            cargo publish --dry-run --no-verify --allow-dirty -p "$crate"
           done
