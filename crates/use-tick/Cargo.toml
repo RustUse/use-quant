@@ -1,21 +1,21 @@
 [package]
 name = "use-tick"
-description = "Primitive tick, trade, and quote vocabulary for RustUse quantitative crates"
+version = "0.1.0"
 publish = true
+keywords = ["quant", "tick", "trade", "quote", "rustuse"]
+description = "Primitive tick, trade, and quote vocabulary for RustUse quantitative crates"
+homepage = "https://rustuse.org/use-quant/use-tick"
+documentation = "https://docs.rs/use-tick"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-tick"
-keywords = ["quant", "tick", "trade", "quote", "rustuse"]
-categories = ["data-structures", "science"]
+categories.workspace = true
 
 [dependencies]
-use-market-price.workspace = true
+use-market-price = { workspace = true, optional = false }
 
 [package.metadata.docs.rs]
 all-features = true

@@ -1,18 +1,18 @@
 [package]
 name = "use-risk"
-description = "Primitive quantitative risk vocabulary for RustUse"
+version = "0.1.0"
 publish = true
+keywords = ["quant", "risk", "limit", "budget", "rustuse"]
+description = "Primitive quantitative risk vocabulary for RustUse"
+homepage = "https://rustuse.org/use-quant/use-risk"
+documentation = "https://docs.rs/use-risk"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-risk"
-keywords = ["quant", "risk", "limit", "budget", "rustuse"]
-categories = ["data-structures", "science"]
+categories.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true

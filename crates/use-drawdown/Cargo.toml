@@ -1,18 +1,18 @@
 [package]
 name = "use-drawdown"
-description = "Primitive drawdown vocabulary for RustUse quantitative crates"
+version = "0.1.0"
 publish = true
+keywords = ["quant", "drawdown", "risk", "equity", "rustuse"]
+description = "Primitive drawdown vocabulary for RustUse quantitative crates"
+homepage = "https://rustuse.org/use-quant/use-drawdown"
+documentation = "https://docs.rs/use-drawdown"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-drawdown"
-keywords = ["quant", "drawdown", "risk", "equity", "rustuse"]
-categories = ["mathematics", "science"]
+categories.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true

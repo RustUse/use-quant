@@ -1,18 +1,18 @@
 [package]
 name = "use-return"
-description = "Primitive quantitative return vocabulary for RustUse"
+version = "0.1.0"
 publish = true
+keywords = ["quant", "return", "log", "simple", "rustuse"]
+description = "Primitive quantitative return vocabulary for RustUse"
+homepage = "https://rustuse.org/use-quant/use-return"
+documentation = "https://docs.rs/use-return"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-return"
-keywords = ["quant", "return", "log", "simple", "rustuse"]
-categories = ["mathematics", "science"]
+categories.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true

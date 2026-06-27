@@ -1,18 +1,18 @@
 [package]
 name = "use-portfolio-weight"
-description = "Primitive portfolio weight vocabulary for RustUse quantitative crates"
+version = "0.1.0"
 publish = true
+keywords = ["quant", "portfolio", "weight", "asset", "rustuse"]
+description = "Primitive portfolio weight vocabulary for RustUse quantitative crates"
+homepage = "https://rustuse.org/use-quant/use-portfolio-weight"
+documentation = "https://docs.rs/use-portfolio-weight"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-portfolio-weight"
-keywords = ["quant", "portfolio", "weight", "asset", "rustuse"]
-categories = ["data-structures", "science"]
+categories.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true
