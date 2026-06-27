@@ -1,6 +1,6 @@
 [package]
 name = "use-tick"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "tick", "trade", "quote", "rustuse"]
 description = "Primitive tick, trade, and quote vocabulary for RustUse quantitative crates"

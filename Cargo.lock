@@ -164,30 +164,30 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 
 [[package]]
 name = "use-bar"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "use-market-price",
 ]
 
 [[package]]
 name = "use-drawdown"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-factor"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-market-price"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-portfolio-weight"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-price-series"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "use-market-price",
  "use-return",
@@ -195,7 +195,7 @@ dependencies = [
 
 [[package]]
 name = "use-quant"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "proptest",
  "use-bar",
@@ -213,26 +213,26 @@ dependencies = [
 
 [[package]]
 name = "use-return"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-risk"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-signal-score"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "use-tick"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "use-market-price",
 ]
 
 [[package]]
 name = "use-volatility"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "wasip2"

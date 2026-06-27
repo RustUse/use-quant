@@ -12,17 +12,17 @@ rust-version = "1.95.0"
 
 [workspace.dependencies]
 proptest = { version = "1.11.0", default-features = false, features = ["std"] }
-use-bar = { version = "0.1.0", path = "crates/use-bar" }
-use-drawdown = { version = "0.1.0", path = "crates/use-drawdown" }
-use-factor = { version = "0.1.0", path = "crates/use-factor" }
-use-market-price = { version = "0.1.0", path = "crates/use-market-price" }
-use-portfolio-weight = { version = "0.1.0", path = "crates/use-portfolio-weight" }
-use-price-series = { version = "0.1.0", path = "crates/use-price-series" }
-use-return = { version = "0.1.0", path = "crates/use-return" }
-use-risk = { version = "0.1.0", path = "crates/use-risk" }
-use-signal-score = { version = "0.1.0", path = "crates/use-signal-score" }
-use-tick = { version = "0.1.0", path = "crates/use-tick" }
-use-volatility = { version = "0.1.0", path = "crates/use-volatility" }
+use-bar = { version = "0.2.0", path = "crates/use-bar" }
+use-drawdown = { version = "0.2.0", path = "crates/use-drawdown" }
+use-factor = { version = "0.2.0", path = "crates/use-factor" }
+use-market-price = { version = "0.2.0", path = "crates/use-market-price" }
+use-portfolio-weight = { version = "0.2.0", path = "crates/use-portfolio-weight" }
+use-price-series = { version = "0.2.0", path = "crates/use-price-series" }
+use-return = { version = "0.2.0", path = "crates/use-return" }
+use-risk = { version = "0.2.0", path = "crates/use-risk" }
+use-signal-score = { version = "0.2.0", path = "crates/use-signal-score" }
+use-tick = { version = "0.2.0", path = "crates/use-tick" }
+use-volatility = { version = "0.2.0", path = "crates/use-volatility" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

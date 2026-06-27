@@ -1,6 +1,6 @@
 [package]
 name = "use-quant"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "finance", "prices", "risk", "rustuse"]
 description = "Facade crate for RustUse quantitative finance primitives"

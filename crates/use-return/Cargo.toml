@@ -1,6 +1,6 @@
 [package]
 name = "use-return"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "return", "log", "simple", "rustuse"]
 description = "Primitive quantitative return vocabulary for RustUse"

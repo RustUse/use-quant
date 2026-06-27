@@ -1,6 +1,6 @@
 [package]
 name = "use-volatility"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "volatility", "risk", "returns", "rustuse"]
 description = "Primitive volatility vocabulary for RustUse quantitative crates"

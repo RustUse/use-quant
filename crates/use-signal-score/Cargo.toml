@@ -1,6 +1,6 @@
 [package]
 name = "use-signal-score"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "signal", "score", "ranking", "rustuse"]
 description = "Primitive quantitative signal score vocabulary for RustUse"

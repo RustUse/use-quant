@@ -1,6 +1,6 @@
 [package]
 name = "use-market-price"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "price", "market", "quote", "rustuse"]
 description = "Primitive market price vocabulary for RustUse quantitative crates"

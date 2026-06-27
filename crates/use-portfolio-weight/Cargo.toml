@@ -1,6 +1,6 @@
 [package]
 name = "use-portfolio-weight"
-version = "0.1.0"
+version = "0.2.0"
 publish = true
 keywords = ["quant", "portfolio", "weight", "asset", "rustuse"]
 description = "Primitive portfolio weight vocabulary for RustUse quantitative crates"
