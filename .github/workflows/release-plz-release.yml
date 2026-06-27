@@ -25,7 +25,6 @@ jobs:
     name: Release-plz Release
     if: ${{ !github.event.repository.fork && ((github.event_name == 'push' && fromJSON(toJSON(vars)).CRATES_IO_AUTOPUBLISH_ENABLED == 'true') || (github.event_name == 'workflow_dispatch' && inputs.post-initial-release)) }}
     runs-on: ubuntu-24.04
-    environment: crates-io
     env:
       PUBLISHED_CRATES: >-
         use-market-price use-return use-bar use-tick use-price-series
