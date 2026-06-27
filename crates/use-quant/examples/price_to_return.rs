@@ -12,7 +12,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("simple return: {:.4}", simple_return.value());
     println!("log return: {:.4}", log_return.value());
 
-    assert!(simple_return.is_gain());
+    assert!(simple_return.value() > 0.0);
     assert!(log_return.value() > 0.0);
 
     Ok(())
