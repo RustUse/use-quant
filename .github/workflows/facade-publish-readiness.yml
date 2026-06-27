@@ -34,14 +34,20 @@ jobs:
           cache-workspaces: |
             . -> target
 
-      - name: Confirm focused crates are visible on crates.io
+      - name: Confirm focused crate versions are visible on crates.io
         shell: bash
         run: |
           set -euo pipefail
 
+          version="$(cargo metadata --format-version 1 --no-deps \
+            | python -c "import json,sys; print(json.load(sys.stdin)['packages'][0]['version'])")"
+
+          echo "Expected version: ${version}"
+
           for crate in $FOCUSED_CRATES; do
-            echo "Checking ${crate} on crates.io..."
-            curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
+            echo "Checking ${crate} ${version} on crates.io..."
+            curl --fail --silent --show-error \
+              "https://crates.io/api/v1/crates/${crate}/${version}" > /dev/null
           done
 
       - name: List packaged facade files

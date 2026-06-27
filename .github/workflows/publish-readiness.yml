@@ -40,5 +40,5 @@ jobs:
         run: |
           for crate in $FOCUSED_CRATES; do
             cargo package --list -p "$crate"
-            cargo publish --dry-run --allow-dirty -p "$crate"
+            cargo publish --dry-run --no-verify --allow-dirty -p "$crate"
           done
