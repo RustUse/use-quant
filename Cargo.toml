@@ -17,7 +17,7 @@ resolver = "3"
 
 [workspace.package]
 authors = ["RustUse Contributors"]
-version = "0.0.1"
+version = "0.1.0"
 edition = "2024"
 rust-version = "1.95.0"
 license = "MIT OR Apache-2.0"
@@ -27,18 +27,18 @@ readme = "README.md"
 publish = false
 
 [workspace.dependencies]
-use-bar = { version = "0.0.1", path = "crates/use-bar" }
-use-drawdown = { version = "0.0.1", path = "crates/use-drawdown" }
-use-factor = { version = "0.0.1", path = "crates/use-factor" }
-use-market-price = { version = "0.0.1", path = "crates/use-market-price" }
-use-portfolio-weight = { version = "0.0.1", path = "crates/use-portfolio-weight" }
-use-price-series = { version = "0.0.1", path = "crates/use-price-series" }
-use-quant = { version = "0.0.1", path = "crates/use-quant" }
-use-return = { version = "0.0.1", path = "crates/use-return" }
-use-risk = { version = "0.0.1", path = "crates/use-risk" }
-use-signal-score = { version = "0.0.1", path = "crates/use-signal-score" }
-use-tick = { version = "0.0.1", path = "crates/use-tick" }
-use-volatility = { version = "0.0.1", path = "crates/use-volatility" }
+use-bar = { version = "0.1.0", path = "crates/use-bar" }
+use-drawdown = { version = "0.1.0", path = "crates/use-drawdown" }
+use-factor = { version = "0.1.0", path = "crates/use-factor" }
+use-market-price = { version = "0.1.0", path = "crates/use-market-price" }
+use-portfolio-weight = { version = "0.1.0", path = "crates/use-portfolio-weight" }
+use-price-series = { version = "0.1.0", path = "crates/use-price-series" }
+use-quant = { version = "0.1.0", path = "crates/use-quant" }
+use-return = { version = "0.1.0", path = "crates/use-return" }
+use-risk = { version = "0.1.0", path = "crates/use-risk" }
+use-signal-score = { version = "0.1.0", path = "crates/use-signal-score" }
+use-tick = { version = "0.1.0", path = "crates/use-tick" }
+use-volatility = { version = "0.1.0", path = "crates/use-volatility" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

@@ -4,30 +4,30 @@ version = 4
 
 [[package]]
 name = "use-bar"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "use-market-price",
 ]
 
 [[package]]
 name = "use-drawdown"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-factor"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-market-price"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-portfolio-weight"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-price-series"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "use-market-price",
  "use-return",
@@ -35,7 +35,7 @@ dependencies = [
 
 [[package]]
 name = "use-quant"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "use-bar",
  "use-drawdown",
@@ -52,23 +52,23 @@ dependencies = [
 
 [[package]]
 name = "use-return"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-risk"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-signal-score"
-version = "0.0.1"
+version = "0.1.0"
 
 [[package]]
 name = "use-tick"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "use-market-price",
 ]
 
 [[package]]
 name = "use-volatility"
-version = "0.0.1"
+version = "0.1.0"
