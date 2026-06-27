@@ -59,9 +59,6 @@ use-signal-score = { workspace = true, optional = true }
 use-tick = { workspace = true, optional = true }
 use-volatility = { workspace = true, optional = true }
 
-[dev-dependencies]
-proptest = { workspace = true, optional = false }
-
 [[example]]
 name = "portfolio_exposure"
 path = "examples/portfolio_exposure.rs"
