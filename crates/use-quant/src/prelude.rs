@@ -1,5 +1,8 @@
 #[cfg(feature = "bar")]
-pub use crate::bar::{BarInterval, BarTime, OhlcBar, OhlcvBar};
+pub use crate::bar::{
+    BarError, BarInterval, BarIntervalError, BarTime, BarTimeError, BarVolume, BarVolumeError,
+    OhlcBar, OhlcvBar,
+};
 
 #[cfg(feature = "drawdown")]
 pub use crate::drawdown::{Drawdown, DrawdownPoint, DrawdownWindow};

@@ -1,8 +1,8 @@
 # use-bar
 
-Primitive OHLC and OHLCV bar vocabulary for `RustUse` quantitative crates.
+Composable RustUse utility for OHLC and OHLCV market bars.
 
-`use-bar` describes bars with simple labels, intervals, prices, and optional volume. It validates obvious OHLC relationships without fetching, resampling, charting, or storing market data externally.
+`use-bar` provides small, validated bar types for quantitative finance code: bar time labels, bar intervals, OHLC bars, OHLCV bars, and bar volume. It validates obvious OHLC and volume relationships without fetching market data, resampling bars, charting candles, storing market data, or implementing vendor-specific formats.
 
 ## Example
 
@@ -19,14 +19,26 @@ let bar = OhlcvBar::from_values(
     42_000.0,
 )?;
 
-assert_eq!(bar.bar().close().value(), 101.25);
-assert_eq!(bar.volume(), 42_000.0);
+assert_eq!(bar.close().value(), 101.25);
+assert_eq!(bar.volume().value(), 42_000.0);
+assert_eq!(bar.range(), 2.5);
+assert_eq!(bar.body(), 1.25);
+assert!(bar.is_up());
+
 # Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ## Scope
 
-Use this crate for descriptive OHLC/OHLCV values. It does not fetch data, resample bars, build candlestick charts, or implement vendor formats.
+Use this crate for descriptive OHLC and OHLCV values.
+
+This crate does not:
+
+- fetch market data
+- resample bars
+- build candlestick charts
+- store market data externally
+- implement vendor-specific formats
 
 ## License
 
