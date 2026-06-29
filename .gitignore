@@ -15,6 +15,7 @@ rustc-ice-*.txt
 !.env.example
 !.env.sample
 .direnv/
+scripts/
 
 # --- Editor State ---
 .vscode/
