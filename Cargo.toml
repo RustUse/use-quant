@@ -1,4 +1,34 @@
+[package]
+authors.workspace = true
+categories.workspace = true
+description = "Facade of composable RustUse utilities for quantitative finance"
+documentation = "https://docs.rs/use-quant"
+edition.workspace = true
+homepage = "https://rustuse.org/use-quant"
+include = [
+    "CHANGELOG.md",
+    "Cargo.toml",
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "README.md",
+    "examples/**/*.rs",
+    "src/**/*.rs",
+]
+keywords = ["finance", "prices", "quant", "risk", "rustuse"]
+license.workspace = true
+name = "use-quant"
+publish = true
+readme = "README.md"
+repository.workspace = true
+rust-version.workspace = true
+version = "0.2.0-beta.1"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
 [workspace]
+default-members = ["."]
 members = ["crates/*"]
 resolver = "3"
 
@@ -23,7 +53,65 @@ use-signal-score = { version = "0.2.0", path = "crates/use-signal-score" }
 use-tick = { version = "0.2.0", path = "crates/use-tick" }
 use-volatility = { version = "0.2.0", path = "crates/use-volatility" }
 
+[features]
+default = []
+
+full = [
+    "bar",
+    "drawdown",
+    "factor",
+    "market-price",
+    "portfolio-weight",
+    "price-series",
+    "return",
+    "risk",
+    "signal-score",
+    "tick",
+    "volatility",
+]
+
+bar = ["dep:use-bar"]
+drawdown = ["dep:use-drawdown"]
+factor = ["dep:use-factor"]
+market-price = ["dep:use-market-price"]
+portfolio-weight = ["dep:use-portfolio-weight"]
+price-series = ["dep:use-price-series"]
+return = ["dep:use-return"]
+risk = ["dep:use-risk"]
+signal-score = ["dep:use-signal-score"]
+tick = ["dep:use-tick"]
+volatility = ["dep:use-volatility"]
+
+[dependencies]
+use-bar = { workspace = true, optional = true }
+use-drawdown = { workspace = true, optional = true }
+use-factor = { workspace = true, optional = true }
+use-market-price = { workspace = true, optional = true }
+use-portfolio-weight = { workspace = true, optional = true }
+use-price-series = { workspace = true, optional = true }
+use-return = { workspace = true, optional = true }
+use-risk = { workspace = true, optional = true }
+use-signal-score = { workspace = true, optional = true }
+use-tick = { workspace = true, optional = true }
+use-volatility = { workspace = true, optional = true }
+
+[[example]]
+name = "portfolio_exposure"
+path = "examples/portfolio_exposure.rs"
+required-features = ["portfolio-weight"]
+
+[[example]]
+name = "price_series_metrics"
+path = "examples/price_series_metrics.rs"
+required-features = ["drawdown", "market-price", "price-series", "return", "volatility"]
+
+[[example]]
+name = "price_to_return"
+path = "examples/price_to_return.rs"
+required-features = ["market-price", "return"]
+
 [workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(docsrs)"] }
 unsafe_code = "forbid"
 
 [workspace.lints.clippy]
@@ -43,3 +131,6 @@ return_self_not_must_use = "allow"
 todo = "deny"
 unimplemented = "deny"
 unwrap_used = "warn"
+
+[lints]
+workspace = true
