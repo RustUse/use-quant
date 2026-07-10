@@ -1,21 +1,21 @@
 [package]
 name = "use-bar"
-description = "Primitive OHLC and OHLCV bar vocabulary for RustUse quantitative crates"
+version = "0.2.0"
 publish = true
+keywords = ["quant", "bar", "ohlc", "ohlcv", "rustuse"]
+description = "Composable RustUse utility for OHLC and OHLCV market bars for quantitative finance"
+homepage = "https://rustuse.org/use-quant/use-bar"
+documentation = "https://docs.rs/use-bar"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-bar"
-keywords = ["quant", "bar", "ohlc", "ohlcv", "rustuse"]
-categories = ["data-structures", "science"]
+categories.workspace = true
 
 [dependencies]
-use-market-price.workspace = true
+use-market-price = { workspace = true, optional = false }
 
 [package.metadata.docs.rs]
 all-features = true

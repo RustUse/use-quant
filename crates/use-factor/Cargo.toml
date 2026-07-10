@@ -1,18 +1,18 @@
 [package]
 name = "use-factor"
-description = "Primitive quantitative factor vocabulary for RustUse"
+version = "0.2.0"
 publish = true
+keywords = ["quant", "factor", "exposure", "loading", "rustuse"]
+description = "Primitive quantitative factor vocabulary for RustUse"
+homepage = "https://rustuse.org/use-quant/use-factor"
+documentation = "https://docs.rs/use-factor"
+readme = "README.md"
 authors.workspace = true
-version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
-readme = "README.md"
-documentation = "https://docs.rs/use-factor"
-keywords = ["quant", "factor", "exposure", "loading", "rustuse"]
-categories = ["data-structures", "science"]
+categories.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true
