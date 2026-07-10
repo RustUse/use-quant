@@ -16,6 +16,7 @@ rustc-ice-*.txt
 !.env.sample
 .direnv/
 scripts/
+rustuse-report.md
 
 # --- Editor State ---
 .vscode/
