@@ -18,7 +18,7 @@ jobs:
               uses: actions/checkout@v6
 
             - name: Install stable Rust toolchain
-              uses: actions-rust-lang/setup-rust-toolchain@v1
+              uses: actions-rust-lang/setup-rust-toolchain@v2
               with:
                   rustflags: ""
                   cache-workspaces: |
@@ -41,7 +41,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Install stable Rust toolchain
-              uses: actions-rust-lang/setup-rust-toolchain@v1
+              uses: actions-rust-lang/setup-rust-toolchain@v2
               with:
                   rustflags: ""
                   cache-workspaces: |
